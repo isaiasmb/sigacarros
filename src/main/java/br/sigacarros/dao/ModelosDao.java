@@ -7,10 +7,13 @@ import javax.transaction.Transactional;
 
 import br.sigacarros.data.MarcasData;
 import br.sigacarros.data.ModelosData;
+import br.sigacarros.data.VersoesData;
 
-public class ModelosDao {
-	@PersistenceContext(unitName = "sigacarrosbase-unit")
-	private EntityManager em;
+public class ModelosDao extends GenericDao<ModelosData> {
+	
+	public ModelosDao() {
+		super(ModelosData.class);
+	}
 	
 	@Inject
 	private ModelosData modelosData;
@@ -22,6 +25,6 @@ public class ModelosDao {
 		MarcasData marcasData = new MarcasData();
 		marcasData.setIdMarca(1);
 		modelosData.setMarcasData(marcasData);
-		em.persist(modelosData);
+		super.save(modelosData);
 	}
 }
