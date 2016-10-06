@@ -1,14 +1,17 @@
 package br.sigacarros.dao;
 
+import java.util.List;
+
+import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
 
 import br.sigacarros.data.MarcasData;
 import br.sigacarros.data.ModelosData;
-import br.sigacarros.data.VersoesData;
 
+@Stateless
 public class ModelosDao extends GenericDao<ModelosData> {
 	
 	public ModelosDao() {
@@ -19,12 +22,22 @@ public class ModelosDao extends GenericDao<ModelosData> {
 	private ModelosData modelosData;
 	
 	@Transactional
-	public void salvar() {
+	public void salvar(ModelosData modelosData) {
 		
-		modelosData.setNome("208");
-		MarcasData marcasData = new MarcasData();
-		marcasData.setIdMarca(1);
-		modelosData.setMarcasData(marcasData);
-		super.save(modelosData);
+		
+			//modelosData.setNome("208");
+			//MarcasData marcasData = new MarcasData();
+			//marcasData.setIdMarca(1);
+			//modelosData.setMarcasData(marcasData);
+			super.save(modelosData);
+			
+	}
+	
+	public ModelosData buscar(int codigo) {
+		return super.find(codigo);
+	}
+	
+	public List<ModelosData> listar() {
+		return super.findAll("select * from modelos", ModelosData.class);
 	}
 }
