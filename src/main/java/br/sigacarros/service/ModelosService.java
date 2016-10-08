@@ -3,6 +3,8 @@ package br.sigacarros.service;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import br.sigacarros.dao.ModelosDao;
 import br.sigacarros.data.ModelosData;
@@ -23,8 +25,18 @@ public class ModelosService {
 		modelosDao.salvar(modelosData);
 	}
 	
+	
+	public void excluirModelo(Integer id) {
+		modelosDao.excluir(id);
+	}
+	
+	
 	public List<ModelosData> listarTodos() {
 		return modelosDao.listar();
+	}
+	
+	public List<ModelosData> listarPorMarca(Integer idMarca) {
+		return modelosDao.listarPorMarca(idMarca);
 	}
 	
 	

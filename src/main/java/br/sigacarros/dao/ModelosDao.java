@@ -21,7 +21,7 @@ public class ModelosDao extends GenericDao<ModelosData> {
 	@Inject
 	private ModelosData modelosData;
 	
-	@Transactional
+	
 	public void salvar(ModelosData modelosData) {
 		
 		
@@ -33,11 +33,19 @@ public class ModelosDao extends GenericDao<ModelosData> {
 			
 	}
 	
+	public void excluir(Integer id) {
+		 super.delete(id, ModelosData.class);
+	}
+	
 	public ModelosData buscar(int codigo) {
 		return super.find(codigo);
 	}
 	
 	public List<ModelosData> listar() {
 		return super.findAll("select * from modelos", ModelosData.class);
+	}
+	
+	public List<ModelosData> listarPorMarca(Integer idMarca) {
+		return super.findByMarca(idMarca);
 	}
 }
