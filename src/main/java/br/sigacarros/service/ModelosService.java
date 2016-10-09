@@ -25,6 +25,11 @@ public class ModelosService {
 		modelosDao.salvar(modelosData);
 	}
 	
+	public void atualizarModelo(ModelosData modelosData) {
+		
+		modelosDao.update(modelosData);
+	}
+	
 	
 	public void excluirModelo(Integer id) {
 		modelosDao.excluir(id);
@@ -33,6 +38,10 @@ public class ModelosService {
 	
 	public List<ModelosData> listarTodos() {
 		return modelosDao.listar();
+	}
+	
+	public ModelosData buscarModelo(Integer idModelo) {
+		return modelosDao.buscar(idModelo);
 	}
 	
 	public List<ModelosData> listarPorMarca(Integer idMarca) {

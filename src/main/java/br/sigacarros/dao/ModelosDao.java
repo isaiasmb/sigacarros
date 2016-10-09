@@ -33,11 +33,15 @@ public class ModelosDao extends GenericDao<ModelosData> {
 			
 	}
 	
+	public void atualizar(ModelosData modelosData) {
+		super.update(modelosData);
+	}
+	
 	public void excluir(Integer id) {
 		 super.delete(id, ModelosData.class);
 	}
 	
-	public ModelosData buscar(int codigo) {
+	public ModelosData buscar(Integer codigo) {
 		return super.find(codigo);
 	}
 	
